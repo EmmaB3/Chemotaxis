@@ -23,12 +23,12 @@
  	}
  }  
 
-void mousePressed(){
+void mouseReleased(){
 	for(int a = 0; a < dots.length; a ++){
 		dots[a].burst();
 	}
 	if(mouseY > 480 && mouseY < 490 && mouseX > 15 && mouseX < 15 * (colors.length + 1)){
-		System.out.println((int)(mouseX / 15) + 1);
+		currentColor = (int)(mouseX / 15) - 1;
 	}
 
  }
@@ -40,8 +40,10 @@ void mousePressed(){
  		y = 250;
  	}
  	void move(){
- 		x += (int)(Math.random()*3) - 1;
- 		y += (int)(Math.random()*3) - 1;
+   int xSign = Math.signum(mouseX - x)== 0 ? 2 : (int)(Math.signum(mouseX - x)) ;
+   int ySign = Math.signum(mouseY - y) == 0 ? 2 : (int)(Math.signum(mouseY - y));
+    x += (int)(Math.random()*5*Math.signum(xSign)) + (-1 * xSign);
+    y += (int)(Math.random()*5*Math.signum(ySign)) + (-1 * ySign);
  	}
  	void show(){
  		c = colors[currentColor];
