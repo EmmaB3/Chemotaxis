@@ -34,6 +34,9 @@ void mouseReleased(){
 	}
 
  }
+ int getSign(int n){
+   return n < 0 ? -1: n == 0? 2 : 1;
+ }
  class Bacteria    
  {    
  	int x,y,c,counter;
@@ -56,10 +59,10 @@ void mouseReleased(){
        xTarget = mouseX;
        yTarget = mouseY;
      }
-      int xSign = Math.signum(xTarget - x)== 0 ? 2 : (int)(Math.signum(xTarget - x)) ;
-      int ySign = Math.signum(yTarget - y) == 0 ? 2 : (int)(Math.signum(yTarget - y));
-      x += (int)(Math.random()*5*Math.signum(xSign)) + (-1 * xSign);
-      y += (int)(Math.random()*5*Math.signum(ySign)) + (-1 * ySign);
+      int xSign = getSign(xTarget - x);
+      int ySign = getSign(yTarget - y);
+      x += (int)(Math.random()*5*getSign(xSign)) + (-1 * xSign);
+      y += (int)(Math.random()*5*getSign(ySign)) + (-1 * ySign);
  	}
  	void show(){
  		c = colors[currentColor];
