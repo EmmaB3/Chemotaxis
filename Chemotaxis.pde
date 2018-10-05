@@ -44,28 +44,22 @@ void mouseReleased(){
  		y = 250;
  	}
  	void move(){
+   int xTarget, yTarget;
  		if(bursting){
- 			int xTarget = (int)((Math.cos(angle)*100) + x);
- 			int yTarget = (int)((Math.sin(angle)*100) + y);
- 			println(xTarget + " " + yTarget);
- 			int xSign = Math.signum(xTarget - x)== 0 ? 2 : (int)(Math.signum(xTarget - x)) ;
-		    int ySign = Math.signum(yTarget - y) == 0 ? 2 : (int)(Math.signum(yTarget - y));
-		    if(counter < 30){
-			    //x += (int)(Math.random()*5*Math.signum(xSign)) + (-1 * xSign);
-			    //y += (int)(Math.random()*5*Math.signum(ySign)) + (-1 * ySign);
-			    x += Math.signum(xTarget - x)*5;
-			    y += Math.signum(yTarget - y)*5;
-			    counter ++;
-			}else{
-				bursting = false;
-			}
-
- 		}else{
-		    int xSign = Math.signum(mouseX - x)== 0 ? 2 : (int)(Math.signum(mouseX - x)) ;
-		    int ySign = Math.signum(mouseY - y) == 0 ? 2 : (int)(Math.signum(mouseY - y));
-		    x += (int)(Math.random()*5*Math.signum(xSign)) + (-1 * xSign);
-		    y += (int)(Math.random()*5*Math.signum(ySign)) + (-1 * ySign);
-		}	
+ 			xTarget = (int)((Math.cos(angle)*50) + x);
+ 			yTarget = (int)((Math.sin(angle)*50) + y);  
+       counter ++;
+       if (counter > 30){
+         bursting = false;
+       }
+     }else{
+       xTarget = mouseX;
+       yTarget = mouseY;
+     }
+      int xSign = Math.signum(xTarget - x)== 0 ? 2 : (int)(Math.signum(xTarget - x)) ;
+      int ySign = Math.signum(yTarget - y) == 0 ? 2 : (int)(Math.signum(yTarget - y));
+      x += (int)(Math.random()*5*Math.signum(xSign)) + (-1 * xSign);
+      y += (int)(Math.random()*5*Math.signum(ySign)) + (-1 * ySign);
  	}
  	void show(){
  		c = colors[currentColor];
